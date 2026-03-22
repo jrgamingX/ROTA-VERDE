@@ -2,21 +2,24 @@
   "name": "Rota Verde — Códigos",
   "short_name": "Rota Verde",
   "description": "Códigos de rádio e ocorrências Rota Verde",
-  "start_url": "./rota-verde-estudo.html",
+  "start_url": "/ROTA-VERDE/rota-verde-estudo.html",
+  "scope": "/ROTA-VERDE/",
   "display": "standalone",
   "background_color": "#0f1a0f",
   "theme_color": "#76c442",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "/ROTA-VERDE/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "/ROTA-VERDE/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
