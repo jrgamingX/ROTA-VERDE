@@ -6,7 +6,7 @@
 <title>Rota Verde — Códigos de Rádio e Procedimentos</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
- 
+
   :root {
     --verde: #2d6a2d;
     --verde-claro: #4caf50;
@@ -19,16 +19,16 @@
     --texto2: #a8c8a8;
     --borda: #2d4a2d;
   }
- 
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   body {
     background: var(--fundo);
     color: var(--texto);
     font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
   }
- 
+
   header {
     background: linear-gradient(135deg, #0a120a 0%, var(--verde) 100%);
     padding: 28px 32px 20px;
@@ -37,31 +37,36 @@
     align-items: center;
     gap: 20px;
   }
- 
+
   .logo-box {
     background: var(--verde-neon);
-    color: #0a120a;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    padding: 8px 14px;
-    letter-spacing: 2px;
-    border-radius: 4px;
-    line-height: 1;
+    border-radius: 8px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
- 
+
+  .logo-box img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
   header h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
     letter-spacing: 3px;
     color: #fff;
   }
- 
+
   header p {
     font-size: 13px;
     color: var(--texto2);
     margin-top: 2px;
   }
- 
+
   .tabs {
     display: flex;
     gap: 4px;
@@ -70,7 +75,7 @@
     border-bottom: 2px solid var(--borda);
     flex-wrap: wrap;
   }
- 
+
   .tab {
     padding: 10px 18px;
     font-family: 'DM Sans', sans-serif;
@@ -86,10 +91,10 @@
     transition: all 0.2s;
     border-radius: 4px 4px 0 0;
   }
- 
+
   .tab:hover { color: var(--verde-neon); background: rgba(118,196,66,0.05); }
   .tab.active { color: var(--verde-neon); border-bottom-color: var(--verde-neon); background: rgba(118,196,66,0.08); }
- 
+
   .search-bar {
     padding: 16px 24px;
     background: var(--fundo2);
@@ -97,7 +102,7 @@
     align-items: center;
     gap: 12px;
   }
- 
+
   .search-bar input {
     width: 100%;
     max-width: 480px;
@@ -111,13 +116,13 @@
     outline: none;
     transition: border-color 0.2s;
   }
- 
+
   .search-bar input:focus { border-color: var(--verde-neon); }
   .search-bar input::placeholder { color: var(--texto2); opacity: 0.5; }
- 
+
   .section { display: none; padding: 16px 24px 40px; }
   .section.active { display: block; }
- 
+
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
@@ -128,24 +133,24 @@
     align-items: center;
     gap: 10px;
   }
- 
+
   .section-title::after {
     content: '';
     flex: 1;
     height: 1px;
     background: var(--borda);
   }
- 
+
   .tbl-wrap { overflow-x: auto; border-radius: 8px; border: 1.5px solid var(--borda); margin-bottom: 24px; }
- 
+
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13.5px;
   }
- 
+
   thead tr { background: var(--verde); }
- 
+
   thead th {
     padding: 11px 14px;
     text-align: left;
@@ -156,20 +161,20 @@
     color: #fff;
     white-space: nowrap;
   }
- 
+
   tbody tr {
     border-bottom: 1px solid var(--borda);
     transition: background 0.15s;
   }
- 
+
   tbody tr:hover { background: rgba(118,196,66,0.07); }
   tbody tr:last-child { border-bottom: none; }
- 
+
   td {
     padding: 10px 14px;
     vertical-align: top;
   }
- 
+
   .cod {
     font-family: 'DM Mono', monospace;
     color: var(--verde-neon);
@@ -177,22 +182,22 @@
     white-space: nowrap;
     font-size: 13px;
   }
- 
+
   .pron {
     color: var(--amarelo);
     font-family: 'DM Mono', monospace;
     font-size: 12px;
   }
- 
+
   tr.hidden { display: none; }
- 
+
   /* GRID DE CARDS ALFABÉTICO */
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 10px;
   }
- 
+
   .card {
     background: var(--fundo3);
     border: 1.5px solid var(--borda);
@@ -202,17 +207,17 @@
     transition: border-color 0.2s, transform 0.15s;
     cursor: default;
   }
- 
+
   .card:hover { border-color: var(--verde-neon); transform: translateY(-2px); }
   .card.hidden { display: none; }
- 
+
   .letra {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 32px;
     color: var(--verde-neon);
     line-height: 1;
   }
- 
+
   .nome-cod {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -221,21 +226,21 @@
     margin-top: 6px;
     letter-spacing: 0.5px;
   }
- 
+
   .pron-card {
     font-size: 11px;
     color: var(--amarelo);
     margin-top: 4px;
     font-family: 'DM Mono', monospace;
   }
- 
+
   /* NUMÉRICO */
   .num-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 10px;
   }
- 
+
   .num-card {
     background: var(--fundo3);
     border: 1.5px solid var(--borda);
@@ -243,35 +248,35 @@
     padding: 18px 14px;
     text-align: center;
   }
- 
+
   .num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 40px;
     color: var(--verde-neon);
     line-height: 1;
   }
- 
+
   .num-pron {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
     color: var(--amarelo);
     margin-top: 8px;
   }
- 
+
   /* CCO */
   .cco-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 16px;
   }
- 
+
   .cco-card {
     background: var(--fundo3);
     border: 1.5px solid var(--borda);
     border-radius: 10px;
     overflow: hidden;
   }
- 
+
   .cco-card-header {
     background: var(--verde);
     padding: 12px 16px;
@@ -279,7 +284,7 @@
     font-size: 13px;
     letter-spacing: 0.5px;
   }
- 
+
   .cco-row {
     display: flex;
     align-items: center;
@@ -288,9 +293,9 @@
     border-bottom: 1px solid var(--borda);
     font-size: 13px;
   }
- 
+
   .cco-row:last-child { border-bottom: none; }
- 
+
   .cco-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
@@ -298,10 +303,10 @@
     min-width: 28px;
     text-align: center;
   }
- 
+
   /* ABASTECIMENTO */
   .abas-list { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
- 
+
   .abas-item {
     display: flex;
     align-items: center;
@@ -311,7 +316,7 @@
     border-radius: 8px;
     padding: 14px 18px;
   }
- 
+
   .abas-step {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
@@ -319,9 +324,9 @@
     min-width: 32px;
     text-align: center;
   }
- 
+
   .abas-desc { font-size: 14px; line-height: 1.4; }
- 
+
   /* BADGE DE VERSÃO */
   .badge {
     display: inline-block;
@@ -338,15 +343,15 @@
 </style>
 </head>
 <body>
- 
+
 <header>
-  <div class="logo-box">RV</div>
+  <div class="logo-box"><img src="logo.png" alt="Rota Verde"></div>
   <div>
     <h1>Rota Verde — Códigos de Rádio<span class="badge">v2</span></h1>
     <p>Códigos Q · Ocorrências · Providências · Alfabético · Numérico · CCO · Abastecimento</p>
   </div>
 </header>
- 
+
 <nav class="tabs">
   <button class="tab active" onclick="showTab('qcodes', this)">Códigos Q</button>
   <button class="tab" onclick="showTab('ocorrencias', this)">Ocorrências</button>
@@ -356,11 +361,11 @@
   <button class="tab" onclick="showTab('cco', this)">CCO</button>
   <button class="tab" onclick="showTab('abastecimento', this)">Abastecimento</button>
 </nav>
- 
+
 <div class="search-bar">
   <input type="text" id="searchInput" placeholder="Buscar código ou significado..." oninput="filterAll()">
 </div>
- 
+
 <!-- ======================== Q CODES ======================== -->
 <div id="qcodes" class="section active">
   <div class="section-title">Códigos Q</div>
@@ -399,11 +404,11 @@
     </table>
   </div>
 </div>
- 
+
 <!-- ======================== OCORRÊNCIAS ======================== -->
 <div id="ocorrencias" class="section">
   <div class="section-title">Tipos de Ocorrências</div>
- 
+
   <div class="section-title" style="font-size:14px; margin-top:8px;">AC — Acidente</div>
   <div class="tbl-wrap">
     <table id="tbl-oc-ac">
@@ -416,7 +421,7 @@
       </tbody>
     </table>
   </div>
- 
+
   <div class="section-title" style="font-size:14px; margin-top:8px;">C — Conservação</div>
   <div class="tbl-wrap">
     <table id="tbl-oc-c">
@@ -428,7 +433,7 @@
       </tbody>
     </table>
   </div>
- 
+
   <div class="section-title" style="font-size:14px; margin-top:8px;">I — Incidente</div>
   <div class="tbl-wrap">
     <table id="tbl-oc-i">
@@ -451,7 +456,7 @@
       </tbody>
     </table>
   </div>
- 
+
   <div class="section-title" style="font-size:14px; margin-top:8px;">O — Operacional</div>
   <div class="tbl-wrap">
     <table id="tbl-oc-o">
@@ -471,7 +476,7 @@
       </tbody>
     </table>
   </div>
- 
+
   <div class="section-title" style="font-size:14px; margin-top:8px;">P — Pane</div>
   <div class="tbl-wrap">
     <table id="tbl-oc-p">
@@ -484,7 +489,7 @@
       </tbody>
     </table>
   </div>
- 
+
   <div class="section-title" style="font-size:14px; margin-top:8px;">M / IN / OP — Outros</div>
   <div class="tbl-wrap">
     <table id="tbl-oc-outros">
@@ -508,7 +513,7 @@
     </table>
   </div>
 </div>
- 
+
 <!-- ======================== PROVIDÊNCIAS ======================== -->
 <div id="providencias" class="section">
   <div class="section-title">Providências Tomadas (PR)</div>
@@ -580,7 +585,7 @@
     </table>
   </div>
 </div>
- 
+
 <!-- ======================== ALFABÉTICO ======================== -->
 <div id="alfabetico" class="section">
   <div class="section-title">Código Alfabético (NATO)</div>
@@ -613,7 +618,7 @@
     <div class="card"><div class="letra">Z</div><div class="nome-cod">ZULU</div><div class="pron-card">ZULU</div></div>
   </div>
 </div>
- 
+
 <!-- ======================== NUMÉRICO ======================== -->
 <div id="numerico" class="section">
   <div class="section-title">Código Numérico</div>
@@ -630,7 +635,7 @@
     <div class="num-card"><div class="num">9</div><div class="num-pron">NONO</div></div>
   </div>
 </div>
- 
+
 <!-- ======================== CCO ======================== -->
 <div id="cco" class="section">
   <div class="section-title">Sequência de Informações para o CCO</div>
@@ -673,7 +678,7 @@
     </div>
   </div>
 </div>
- 
+
 <!-- ======================== ABASTECIMENTO ======================== -->
 <div id="abastecimento" class="section">
   <div class="section-title">Procedimento de Abastecimento</div>
@@ -685,7 +690,7 @@
     <div class="abas-item"><div class="abas-step">5</div><div class="abas-desc">Acompanhar abastecimento do início ao final</div></div>
   </div>
 </div>
- 
+
 <script>
   function showTab(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -695,10 +700,10 @@
     document.getElementById('searchInput').value = '';
     filterAll();
   }
- 
+
   function filterAll() {
     const q = document.getElementById('searchInput').value.toLowerCase().trim();
- 
+
     const tableIds = ['tbl-q','tbl-oc-ac','tbl-oc-c','tbl-oc-i','tbl-oc-o','tbl-oc-p','tbl-oc-outros','tbl-pr'];
     tableIds.forEach(id => {
       const tbl = document.getElementById(id);
@@ -707,12 +712,12 @@
         row.classList.toggle('hidden', q !== '' && !row.textContent.toLowerCase().includes(q));
       });
     });
- 
+
     document.querySelectorAll('#cards-alfa .card').forEach(card => {
       card.classList.toggle('hidden', q !== '' && !card.textContent.toLowerCase().includes(q));
     });
   }
 </script>
- 
+
 </body>
 </html>
