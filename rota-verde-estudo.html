@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rota Verde — Códigos de Rádio e Ocorrências</title>
+<title>Rota Verde — Códigos de Rádio e Procedimentos</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
-
+ 
   :root {
     --verde: #2d6a2d;
     --verde-claro: #4caf50;
@@ -19,16 +19,16 @@
     --texto2: #a8c8a8;
     --borda: #2d4a2d;
   }
-
+ 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   body {
     background: var(--fundo);
     color: var(--texto);
     font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
   }
-
+ 
   header {
     background: linear-gradient(135deg, #0a120a 0%, var(--verde) 100%);
     padding: 28px 32px 20px;
@@ -37,7 +37,7 @@
     align-items: center;
     gap: 20px;
   }
-
+ 
   .logo-box {
     background: var(--verde-neon);
     color: #0a120a;
@@ -48,21 +48,20 @@
     border-radius: 4px;
     line-height: 1;
   }
-
+ 
   header h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
     letter-spacing: 3px;
     color: #fff;
   }
-
+ 
   header p {
     font-size: 13px;
     color: var(--texto2);
     margin-top: 2px;
   }
-
-  /* TABS */
+ 
   .tabs {
     display: flex;
     gap: 4px;
@@ -71,7 +70,7 @@
     border-bottom: 2px solid var(--borda);
     flex-wrap: wrap;
   }
-
+ 
   .tab {
     padding: 10px 18px;
     font-family: 'DM Sans', sans-serif;
@@ -87,16 +86,18 @@
     transition: all 0.2s;
     border-radius: 4px 4px 0 0;
   }
-
+ 
   .tab:hover { color: var(--verde-neon); background: rgba(118,196,66,0.05); }
   .tab.active { color: var(--verde-neon); border-bottom-color: var(--verde-neon); background: rgba(118,196,66,0.08); }
-
-  /* SEARCH */
+ 
   .search-bar {
     padding: 16px 24px;
     background: var(--fundo2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
-
+ 
   .search-bar input {
     width: 100%;
     max-width: 480px;
@@ -110,14 +111,13 @@
     outline: none;
     transition: border-color 0.2s;
   }
-
+ 
   .search-bar input:focus { border-color: var(--verde-neon); }
   .search-bar input::placeholder { color: var(--texto2); opacity: 0.5; }
-
-  /* SECTIONS */
+ 
   .section { display: none; padding: 16px 24px 40px; }
   .section.active { display: block; }
-
+ 
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
@@ -128,27 +128,24 @@
     align-items: center;
     gap: 10px;
   }
-
+ 
   .section-title::after {
     content: '';
     flex: 1;
     height: 1px;
     background: var(--borda);
   }
-
-  /* TABLE */
-  .tbl-wrap { overflow-x: auto; border-radius: 8px; border: 1.5px solid var(--borda); }
-
+ 
+  .tbl-wrap { overflow-x: auto; border-radius: 8px; border: 1.5px solid var(--borda); margin-bottom: 24px; }
+ 
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13.5px;
   }
-
-  thead tr {
-    background: var(--verde);
-  }
-
+ 
+  thead tr { background: var(--verde); }
+ 
   thead th {
     padding: 11px 14px;
     text-align: left;
@@ -159,359 +156,388 @@
     color: #fff;
     white-space: nowrap;
   }
-
+ 
   tbody tr {
     border-bottom: 1px solid var(--borda);
     transition: background 0.15s;
   }
-
+ 
   tbody tr:hover { background: rgba(118,196,66,0.07); }
   tbody tr:last-child { border-bottom: none; }
-
-  tbody td {
+ 
+  td {
     padding: 10px 14px;
-    vertical-align: middle;
-    line-height: 1.4;
+    vertical-align: top;
   }
-
+ 
   .cod {
     font-family: 'DM Mono', monospace;
+    color: var(--verde-neon);
     font-weight: 500;
-    font-size: 13px;
-    color: var(--amarelo);
     white-space: nowrap;
+    font-size: 13px;
   }
-
+ 
   .pron {
+    color: var(--amarelo);
     font-family: 'DM Mono', monospace;
     font-size: 12px;
-    color: var(--verde-claro);
-    font-style: italic;
   }
-
-  .badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
-  .badge-ac { background: #3a1a1a; color: #ff7070; }
-  .badge-c  { background: #1a2a3a; color: #70b0ff; }
-  .badge-i  { background: #2a2a1a; color: #ffd070; }
-  .badge-o  { background: #1a2a1a; color: #70d070; }
-  .badge-p  { background: #2a1a2a; color: #d070d0; }
-  .badge-m  { background: #1a2a2a; color: #70d0d0; }
-  .badge-in { background: #2a1f1a; color: #ffaa70; }
-  .badge-op { background: #1f1f2a; color: #aaaaff; }
-
-  /* CARDS - GRID for alfabético/numérico */
+ 
+  tr.hidden { display: none; }
+ 
+  /* GRID DE CARDS ALFABÉTICO */
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 10px;
-    margin-top: 8px;
   }
-
+ 
   .card {
     background: var(--fundo3);
     border: 1.5px solid var(--borda);
     border-radius: 8px;
-    padding: 12px;
+    padding: 14px 10px;
     text-align: center;
     transition: border-color 0.2s, transform 0.15s;
+    cursor: default;
   }
-
+ 
   .card:hover { border-color: var(--verde-neon); transform: translateY(-2px); }
-
-  .card .letra {
+  .card.hidden { display: none; }
+ 
+  .letra {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 32px;
     color: var(--verde-neon);
     line-height: 1;
   }
-
-  .card .nome-cod {
+ 
+  .nome-cod {
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
+    font-size: 11px;
+    color: var(--texto);
+    font-weight: 500;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+ 
+  .pron-card {
+    font-size: 11px;
     color: var(--amarelo);
     margin-top: 4px;
-    font-weight: 500;
+    font-family: 'DM Mono', monospace;
   }
-
-  .card .pron-card {
-    font-size: 11px;
-    color: var(--texto2);
-    margin-top: 3px;
-  }
-
-  /* Numérico */
+ 
+  /* NUMÉRICO */
   .num-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 10px;
-    margin-top: 8px;
   }
-
+ 
   .num-card {
     background: var(--fundo3);
     border: 1.5px solid var(--borda);
     border-radius: 8px;
-    padding: 14px;
+    padding: 18px 14px;
     text-align: center;
-    transition: border-color 0.2s;
   }
-
-  .num-card:hover { border-color: var(--amarelo); }
-
-  .num-card .num {
+ 
+  .num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--amarelo);
+    font-size: 40px;
+    color: var(--verde-neon);
     line-height: 1;
   }
-
-  .num-card .num-pron {
+ 
+  .num-pron {
+    font-family: 'DM Mono', monospace;
     font-size: 12px;
-    color: var(--texto2);
-    margin-top: 4px;
-  }
-
-  /* CCO Sequência */
-  .cco-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    color: var(--amarelo);
     margin-top: 8px;
   }
-
-  @media (max-width: 600px) { .cco-grid { grid-template-columns: 1fr; } }
-
+ 
+  /* CCO */
+  .cco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+ 
   .cco-card {
     background: var(--fundo3);
     border: 1.5px solid var(--borda);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
   }
-
+ 
   .cco-card-header {
     background: var(--verde);
-    padding: 10px 14px;
+    padding: 12px 16px;
     font-weight: 600;
     font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
-
+ 
   .cco-row {
     display: flex;
     align-items: center;
-    padding: 9px 14px;
-    border-bottom: 1px solid var(--borda);
     gap: 12px;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--borda);
+    font-size: 13px;
   }
-
+ 
   .cco-row:last-child { border-bottom: none; }
-  .cco-row:hover { background: rgba(118,196,66,0.06); }
-
+ 
   .cco-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     color: var(--verde-neon);
     min-width: 28px;
     text-align: center;
   }
-
-  .cco-desc {
-    font-size: 13px;
-    color: var(--texto);
-  }
-
-  /* Abastecimento */
-  .abas-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-    max-width: 560px;
-  }
-
+ 
+  /* ABASTECIMENTO */
+  .abas-list { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
+ 
   .abas-item {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     background: var(--fundo3);
     border: 1.5px solid var(--borda);
     border-radius: 8px;
-    padding: 12px 16px;
-    transition: border-color 0.2s;
+    padding: 14px 18px;
   }
-
-  .abas-item:hover { border-color: var(--verde-neon); }
-
+ 
   .abas-step {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
+    font-size: 28px;
     color: var(--verde-neon);
     min-width: 32px;
+    text-align: center;
   }
-
-  .abas-desc { font-size: 14px; }
-
-  /* hidden rows */
-  .hidden { display: none !important; }
+ 
+  .abas-desc { font-size: 14px; line-height: 1.4; }
+ 
+  /* BADGE DE VERSÃO */
+  .badge {
+    display: inline-block;
+    background: var(--amarelo);
+    color: #0a120a;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
 </style>
 </head>
 <body>
-
+ 
 <header>
-  <div class="logo-box">ROTA<br>VERDE</div>
+  <div class="logo-box">RV</div>
   <div>
-    <h1>Códigos de Rádio e Procedimentos</h1>
-    <p>Material de estudo — Tipos de Ocorrências · Providências · Códigos Q · Alfabeto · Numérico · CCO</p>
+    <h1>Rota Verde — Códigos de Rádio<span class="badge">v2</span></h1>
+    <p>Códigos Q · Ocorrências · Providências · Alfabético · Numérico · CCO · Abastecimento</p>
   </div>
 </header>
-
-<div class="tabs">
-  <button class="tab active" onclick="showTab('codigosQ')">Códigos Q</button>
-  <button class="tab" onclick="showTab('ocorrencias')">Tipos de Ocorrência</button>
-  <button class="tab" onclick="showTab('providencias')">Providências (PR)</button>
-  <button class="tab" onclick="showTab('alfabetico')">Alfabético</button>
-  <button class="tab" onclick="showTab('numerico')">Numérico</button>
-  <button class="tab" onclick="showTab('cco')">Sequência CCO</button>
-  <button class="tab" onclick="showTab('abastecimento')">Abastecimento</button>
-</div>
-
+ 
+<nav class="tabs">
+  <button class="tab active" onclick="showTab('qcodes', this)">Códigos Q</button>
+  <button class="tab" onclick="showTab('ocorrencias', this)">Ocorrências</button>
+  <button class="tab" onclick="showTab('providencias', this)">Providências</button>
+  <button class="tab" onclick="showTab('alfabetico', this)">Alfabético</button>
+  <button class="tab" onclick="showTab('numerico', this)">Numérico</button>
+  <button class="tab" onclick="showTab('cco', this)">CCO</button>
+  <button class="tab" onclick="showTab('abastecimento', this)">Abastecimento</button>
+</nav>
+ 
 <div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Buscar código ou descrição..." oninput="filterAll()">
+  <input type="text" id="searchInput" placeholder="Buscar código ou significado..." oninput="filterAll()">
 </div>
-
-<!-- ======================== CÓDIGOS Q ======================== -->
-<div id="codigosQ" class="section active">
+ 
+<!-- ======================== Q CODES ======================== -->
+<div id="qcodes" class="section active">
   <div class="section-title">Códigos Q</div>
   <div class="tbl-wrap">
     <table id="tbl-q">
-      <thead><tr><th>Código</th><th>Significado</th><th>Pronúncia</th></tr></thead>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Significado</th>
+          <th>Pronúncia</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr><td class="cod">QAP</td><td>Escuta, está na escuta, escutando</td><td class="pron">que-a-pê</td></tr>
-        <tr><td class="cod">QAR</td><td>Autorização para abandonar a escuta — sempre acompanhado de um número (minutos "fora do ar")</td><td class="pron">que-a-erre</td></tr>
-        <tr><td class="cod">QRA</td><td>Nome / Quem Opera</td><td class="pron">que-erre-á</td></tr>
-        <tr><td class="cod">QRM</td><td>Interferência</td><td class="pron">que-erre-eme</td></tr>
-        <tr><td class="cod">QRU</td><td>Serviço / Problema</td><td class="pron">que-erre-u</td></tr>
-        <tr><td class="cod">QRV</td><td>À disposição, às ordens ou pronto para receber outro evento</td><td class="pron">que-erre-vê</td></tr>
-        <tr><td class="cod">QRX</td><td>Aguarde</td><td class="pron">que-erre-chis</td></tr>
-        <tr><td class="cod">QSA</td><td>Intensidade do sinal de rádio (5=ótimo, 4=bom, 3=regular, 2=ruim, 1=péssimo)</td><td class="pron">que-esse-á</td></tr>
-        <tr><td class="cod">QSI</td><td>Dinheiro</td><td class="pron">que-esse-jota</td></tr>
-        <tr><td class="cod">QSL</td><td>Compreendido</td><td class="pron">que-esse-êli</td></tr>
-        <tr><td class="cod">QSO</td><td>Contato direto entre duas estações ou via rádio / telefone</td><td class="pron">que-esse-ó</td></tr>
+        <tr><td class="cod">QAP</td><td>Escutar, escuta, escutando, na escuta</td><td class="pron">que-a-pê</td></tr>
+        <tr><td class="cod">QAR</td><td>Autorização para abandonar a escuta — acompanhado de um número que indica tempo em minutos fora do ar</td><td class="pron">que-a-érre</td></tr>
+        <tr><td class="cod">QRA</td><td>Nome, Quem Opera</td><td class="pron">que-érre-á</td></tr>
+        <tr><td class="cod">QRM</td><td>Interferência</td><td class="pron">que-érre-eme</td></tr>
+        <tr><td class="cod">QRU</td><td>Serviço / Problema</td><td class="pron">que-érre-u</td></tr>
+        <tr><td class="cod">QRV</td><td>À disposição, às ordens ou pronto para receber outro evento</td><td class="pron">que-érre-vê</td></tr>
+        <tr><td class="cod">QRX</td><td>Aguarde</td><td class="pron">que-érre-chis</td></tr>
+        <tr><td class="cod">QSA</td><td>Intensidade do sinal de rádio (5=ótimo, 4=bom, 3=regular, 2=ruim, 1=péssimo)</td><td class="pron">que-ésse-a</td></tr>
+        <tr><td class="cod">QSJ</td><td>Dinheiro</td><td class="pron">que-ésse-jota</td></tr>
+        <tr><td class="cod">QSL</td><td>Compreendido</td><td class="pron">que-ésse-éli</td></tr>
+        <tr><td class="cod">QSO</td><td>Contato direto entre duas estações ou contato via rádio ou telefone</td><td class="pron">que-ésse-ó</td></tr>
         <tr><td class="cod">QTA</td><td>Cancelar mensagem anterior</td><td class="pron">que-tê-á</td></tr>
         <tr><td class="cod">QTC</td><td>Mensagem</td><td class="pron">que-tê-cê</td></tr>
-        <tr><td class="cod">QTH</td><td>Localização / Posição</td><td class="pron">que-tê-agá</td></tr>
-        <tr><td class="cod">QTI</td><td>A caminho / Destino certo</td><td class="pron">que-tê-i</td></tr>
+        <tr><td class="cod">QTH</td><td>Localização, posição</td><td class="pron">que-tê-agá</td></tr>
+        <tr><td class="cod">QTI</td><td>A caminho / destino certo</td><td class="pron">que-tê-i</td></tr>
         <tr><td class="cod">QTO</td><td>Pausa para necessidades fisiológicas (banheiro)</td><td class="pron">que-tê-ó</td></tr>
-        <tr><td class="cod">QTR</td><td>Hora exata</td><td class="pron">que-tê-erre</td></tr>
-        <tr><td class="cod">QRT</td><td>Vítima fatal</td><td class="pron">que-erre-tê</td></tr>
-        <tr><td class="cod">QUB</td><td>Condições de tempo: chuva, tempo bom, tempo nublado</td><td class="pron">que-ú-bê</td></tr>
-        <tr><td class="cod">QSM</td><td>Repetir a mensagem</td><td class="pron">que-esse-eme</td></tr>
-        <tr><td class="cod">TKS</td><td>Obrigado, grato, agradecido</td><td class="pron">tê-ca-esse</td></tr>
+        <tr><td class="cod">QTR</td><td>Hora exata</td><td class="pron">que-tê-érre</td></tr>
+        <tr><td class="cod">QRT</td><td>Vítima fatal</td><td class="pron">que-érre-tê</td></tr>
+        <tr><td class="cod">QUB</td><td>Condições de tempo (clima): chuva, tempo bom, tempo nublado</td><td class="pron">que-ú-bê</td></tr>
+        <tr><td class="cod">QSM</td><td>Repetir a mensagem</td><td class="pron">que-ésse-eme</td></tr>
+        <tr><td class="cod">TKS</td><td>Obrigado, grato, agradecido</td><td class="pron">tê-ca-ésse</td></tr>
       </tbody>
     </table>
   </div>
 </div>
-
+ 
 <!-- ======================== OCORRÊNCIAS ======================== -->
 <div id="ocorrencias" class="section">
   <div class="section-title">Tipos de Ocorrências</div>
+ 
+  <div class="section-title" style="font-size:14px; margin-top:8px;">AC — Acidente</div>
   <div class="tbl-wrap">
-    <table id="tbl-oc">
-      <thead><tr><th>Código</th><th>Tipo</th><th>Descrição</th></tr></thead>
+    <table id="tbl-oc-ac">
+      <thead><tr><th>Código</th><th>Descrição</th></tr></thead>
       <tbody>
-        <tr><td class="cod">AC 01</td><td><span class="badge badge-ac">ACIDENTE</span></td><td>Acidente com vítima fatal</td></tr>
-        <tr><td class="cod">AC 02</td><td><span class="badge badge-ac">ACIDENTE</span></td><td>Acidente com vítima</td></tr>
-        <tr><td class="cod">AC 03</td><td><span class="badge badge-ac">ACIDENTE</span></td><td>Acidente sem vítima</td></tr>
-        <tr><td class="cod">AC 04</td><td><span class="badge badge-ac">ACIDENTE</span></td><td>Informações de Acidente</td></tr>
-        <tr><td class="cod">C 01</td><td><span class="badge badge-c">CONSERV.</span></td><td>Anomalia no Pavimento</td></tr>
-        <tr><td class="cod">C 02</td><td><span class="badge badge-c">CONSERV.</span></td><td>Obras na Rodovia</td></tr>
-        <tr><td class="cod">C 03</td><td><span class="badge badge-c">CONSERV.</span></td><td>Faixa de Domínio</td></tr>
-        <tr><td class="cod">I 01</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Incêndio em Faixa de Domínio</td></tr>
-        <tr><td class="cod">I 02</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Animal na Rodovia</td></tr>
-        <tr><td class="cod">I 03</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Objeto na pista</td></tr>
-        <tr><td class="cod">I 04</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Veículo abandonado</td></tr>
-        <tr><td class="cod">I 05</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Carga especial</td></tr>
-        <tr><td class="cod">I 06</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Alagamento</td></tr>
-        <tr><td class="cod">I 07</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Andarilho em rodovia</td></tr>
-        <tr><td class="cod">I 08</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Incêndio em veículos</td></tr>
-        <tr><td class="cod">I 09</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Derramamento de Carga</td></tr>
-        <tr><td class="cod">I 10</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Veículo atolado</td></tr>
-        <tr><td class="cod">I 11</td><td><span class="badge badge-i">INCIDENTE</span></td><td>—</td></tr>
-        <tr><td class="cod">I 13</td><td><span class="badge badge-i">INCIDENTE</span></td><td>Atendimento clínico</td></tr>
-        <tr><td class="cod">I 14</td><td><span class="badge badge-i">INCIDENTE</span></td><td>—</td></tr>
-        <tr><td class="cod">I 15</td><td><span class="badge badge-i">INCIDENTE</span></td><td>—</td></tr>
-        <tr><td class="cod">O 01</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Não localizado</td></tr>
-        <tr><td class="cod">O 02</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Veículo atolado</td></tr>
-        <tr><td class="cod">O 03</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>—</td></tr>
-        <tr><td class="cod">O 04</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Ocorrência policial</td></tr>
-        <tr><td class="cod">O 05</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Verificação e monitoramento da rodovia</td></tr>
-        <tr><td class="cod">O 06</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Manifestação popular</td></tr>
-        <tr><td class="cod">O 07</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>—</td></tr>
-        <tr><td class="cod">O 08</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>—</td></tr>
-        <tr><td class="cod">O 09</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Veículo abandonado</td></tr>
-        <tr><td class="cod">O 010</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Monitoramento da rodovia ANTT</td></tr>
-        <tr><td class="cod">O 011</td><td><span class="badge badge-o">OPERAÇÃO</span></td><td>Segurança Viária</td></tr>
-        <tr><td class="cod">P 01</td><td><span class="badge badge-p">PANE</span></td><td>Pane Mecânica</td></tr>
-        <tr><td class="cod">P 02</td><td><span class="badge badge-p">PANE</span></td><td>Pane Seca</td></tr>
-        <tr><td class="cod">P 03</td><td><span class="badge badge-p">PANE</span></td><td>Pneu Furado</td></tr>
-        <tr><td class="cod">P 04</td><td><span class="badge badge-p">PANE</span></td><td>Pane Elétrica</td></tr>
-        <tr><td class="cod">M 01</td><td><span class="badge badge-m">METEOROL.</span></td><td>Congestionamento</td></tr>
-        <tr><td class="cod">IN 01</td><td><span class="badge badge-in">INFRAÇÃO</span></td><td>Interferência em Faixa de Domínio</td></tr>
-        <tr><td class="cod">IN 31</td><td><span class="badge badge-in">INFRAÇÃO</span></td><td>Apreensão de Animal</td></tr>
-        <tr><td class="cod">OP 01</td><td><span class="badge badge-op">OPERAC.</span></td><td>Transporte de Material</td></tr>
-        <tr><td class="cod">OP 02</td><td><span class="badge badge-op">OPERAC.</span></td><td>Apoio à PRF</td></tr>
-        <tr><td class="cod">OP 03</td><td><span class="badge badge-op">OPERAC.</span></td><td>Envento</td></tr>
-        <tr><td class="cod">OP 04</td><td><span class="badge badge-op">OPERAC.</span></td><td>Outros</td></tr>
-        <tr><td class="cod">OP 05</td><td><span class="badge badge-op">OPERAC.</span></td><td>Ocorrência Fora do Trecho</td></tr>
-        <tr><td class="cod">OP 06</td><td><span class="badge badge-op">OPERAC.</span></td><td>Sistema Fora de Serviço</td></tr>
-        <tr><td class="cod">OP 07</td><td><span class="badge badge-op">OPERAC.</span></td><td>Apoio Operacional</td></tr>
-        <tr><td class="cod">OP 08</td><td><span class="badge badge-op">OPERAC.</span></td><td>—</td></tr>
-        <tr><td class="cod">OP 09</td><td><span class="badge badge-op">OPERAC.</span></td><td>—</td></tr>
-        <tr><td class="cod">OP 10</td><td><span class="badge badge-op">OPERAC.</span></td><td>—</td></tr>
-        <tr><td class="cod">OP 29</td><td><span class="badge badge-op">OPERAC.</span></td><td>Condições Climáticas</td></tr>
+        <tr><td class="cod">AC 01</td><td>Acidente com vítima fatal</td></tr>
+        <tr><td class="cod">AC 02</td><td>Acidente com vítima</td></tr>
+        <tr><td class="cod">AC 03</td><td>Acidente sem vítima</td></tr>
+        <tr><td class="cod">AC 04</td><td>Informações de Acidente</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="section-title" style="font-size:14px; margin-top:8px;">C — Conservação</div>
+  <div class="tbl-wrap">
+    <table id="tbl-oc-c">
+      <thead><tr><th>Código</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td class="cod">C 01</td><td>Anomalia no Pavimento</td></tr>
+        <tr><td class="cod">C 02</td><td>Obras na Rodovia</td></tr>
+        <tr><td class="cod">C 03</td><td>Faixa de Domínio</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="section-title" style="font-size:14px; margin-top:8px;">I — Incidente</div>
+  <div class="tbl-wrap">
+    <table id="tbl-oc-i">
+      <thead><tr><th>Código</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td class="cod">I 01</td><td>Animal na Rodovia</td></tr>
+        <tr><td class="cod">I 02</td><td>Objeto na pista</td></tr>
+        <tr><td class="cod">I 03</td><td>Veículo abandonado</td></tr>
+        <tr><td class="cod">I 04</td><td>Incêndio em Faixa de Domínio</td></tr>
+        <tr><td class="cod">I 05</td><td>Incêndio em veículos</td></tr>
+        <tr><td class="cod">I 06</td><td>Derramamento de Carga</td></tr>
+        <tr><td class="cod">I 07</td><td>Veículo atolado</td></tr>
+        <tr><td class="cod">I 08</td><td>Carga especial</td></tr>
+        <tr><td class="cod">I 09</td><td>Alagamento</td></tr>
+        <tr><td class="cod">I 10</td><td>Andarilho em rodovia</td></tr>
+        <tr><td class="cod">I 11</td><td>Não localizado</td></tr>
+        <tr><td class="cod">I 13</td><td>Veículo atolado</td></tr>
+        <tr><td class="cod">I 14</td><td>Atendimento clínico</td></tr>
+        <tr><td class="cod">I 15</td><td>Auxílio no combate a incêndio</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="section-title" style="font-size:14px; margin-top:8px;">O — Operacional</div>
+  <div class="tbl-wrap">
+    <table id="tbl-oc-o">
+      <thead><tr><th>Código</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td class="cod">O 01</td><td>Manifestação popular</td></tr>
+        <tr><td class="cod">O 02</td><td>Remoção de vítima para P.S</td></tr>
+        <tr><td class="cod">O 03</td><td>Atendimento clínico</td></tr>
+        <tr><td class="cod">O 04</td><td>Auxílio no combate a incêndio</td></tr>
+        <tr><td class="cod">O 05</td><td>Ocorrência policial</td></tr>
+        <tr><td class="cod">O 06</td><td>Verificação e monitoramento da rodovia</td></tr>
+        <tr><td class="cod">O 07</td><td>Limpeza de pista</td></tr>
+        <tr><td class="cod">O 08</td><td>Monitoramento da rodovia ANTT</td></tr>
+        <tr><td class="cod">O 09</td><td>Segurança Viária</td></tr>
+        <tr><td class="cod">O 010</td><td>Aprensão de Animal</td></tr>
+        <tr><td class="cod">O 011</td><td>Tranporte de Material</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="section-title" style="font-size:14px; margin-top:8px;">P — Pane</div>
+  <div class="tbl-wrap">
+    <table id="tbl-oc-p">
+      <thead><tr><th>Código</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td class="cod">P 01</td><td>Pane Mecânica</td></tr>
+        <tr><td class="cod">P 02</td><td>Pane Seca</td></tr>
+        <tr><td class="cod">P 03</td><td>Pneu Furado</td></tr>
+        <tr><td class="cod">P 04</td><td>Pane Elétrica</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="section-title" style="font-size:14px; margin-top:8px;">M / IN / OP — Outros</div>
+  <div class="tbl-wrap">
+    <table id="tbl-oc-outros">
+      <thead><tr><th>Código</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td class="cod">M 01</td><td>Congestionamento</td></tr>
+        <tr><td class="cod">IN 01</td><td>Interferência em Faixa de Domínio</td></tr>
+        <tr><td class="cod">IN 31</td><td>Sistema Fora de Serviço</td></tr>
+        <tr><td class="cod">OP 01</td><td>Apoio á PRF</td></tr>
+        <tr><td class="cod">OP 02</td><td>Apoio Operacional</td></tr>
+        <tr><td class="cod">OP 03</td><td>Evento</td></tr>
+        <tr><td class="cod">OP 04</td><td>Outros</td></tr>
+        <tr><td class="cod">OP 05</td><td>Ocorrência Fora do Trecho</td></tr>
+        <tr><td class="cod">OP 06</td><td>Registro Fotográfico</td></tr>
+        <tr><td class="cod">OP 07</td><td>Condições Climáticas</td></tr>
+        <tr><td class="cod">OP 08</td><td>Encaminhamento de animal a clínica</td></tr>
+        <tr><td class="cod">OP 09</td><td>Apreensão de Animal</td></tr>
+        <tr><td class="cod">OP 10</td><td>Retirada de animal da pista</td></tr>
+        <tr><td class="cod">OP 29</td><td>Veículo abandonado</td></tr>
       </tbody>
     </table>
   </div>
 </div>
-
+ 
 <!-- ======================== PROVIDÊNCIAS ======================== -->
 <div id="providencias" class="section">
   <div class="section-title">Providências Tomadas (PR)</div>
   <div class="tbl-wrap">
     <table id="tbl-pr">
-      <thead><tr><th>Código</th><th>Providência</th></tr></thead>
+      <thead><tr><th>Código</th><th>Descrição</th></tr></thead>
       <tbody>
         <tr><td class="cod">PR 01</td><td>Atendimento inicial</td></tr>
-        <tr><td class="cod">PR 02</td><td>Canalização / Sinalização</td></tr>
+        <tr><td class="cod">PR 02</td><td>Canalização/Sinalização</td></tr>
         <tr><td class="cod">PR 03</td><td>Encaminhamento de animal a clínica</td></tr>
         <tr><td class="cod">PR 04</td><td>Apreensão de Animal</td></tr>
         <tr><td class="cod">PR 05</td><td>Retirada de animal da pista</td></tr>
         <tr><td class="cod">PR 06</td><td>Retirada de material da pista</td></tr>
         <tr><td class="cod">PR 07</td><td>Escolta</td></tr>
-        <tr><td class="cod">PR 08</td><td>Notificação de obras devida à ausência/deficiência em elementos de sinalização</td></tr>
-        <tr><td class="cod">PR 09</td><td>Notificação de obras devida à Segurança do Trabalho</td></tr>
-        <tr><td class="cod">PR 10</td><td>Notificação de obras (outros)</td></tr>
-        <tr><td class="cod">PR 11</td><td>Notificação de obras devida à falta de sinalização vertical</td></tr>
+        <tr><td class="cod">PR 08</td><td>Notificação de obras devido a ausencia/deficiencia em elementos de sinalização</td></tr>
+        <tr><td class="cod">PR 09</td><td>Notificação de obras devido a Segurança do Trabalho</td></tr>
+        <tr><td class="cod">PR 10</td><td>Notificação de obras ( outros )</td></tr>
+        <tr><td class="cod">PR 11</td><td>Notificação de obras devido a falta de sinalização vertical</td></tr>
         <tr><td class="cod">PR 12</td><td>Verificação da sinalização de obras</td></tr>
-        <tr><td class="cod">PR 13</td><td>Embargo de obras devida à Segurança do Trabalho</td></tr>
-        <tr><td class="cod">PR 14</td><td>Embargo de obras devida à ausência/deficiência em elementos de sinalização</td></tr>
-        <tr><td class="cod">PR 15</td><td>Embargo de obras devida à falta de sinalização</td></tr>
-        <tr><td class="cod">PR 16</td><td>Recusa de atendimento para remoção de veículos</td></tr>
+        <tr><td class="cod">PR 13</td><td>Embargo de obras devido a Segurança do Trabalho</td></tr>
+        <tr><td class="cod">PR 14</td><td>Embargo de obras devido a ausencia/deficiencia em elementos de sinalização</td></tr>
+        <tr><td class="cod">PR 15</td><td>Embargo de obras devido a Falta de sinalização vertical</td></tr>
+        <tr><td class="cod">PR 16</td><td>Recusa de atendimento para remoção veículos</td></tr>
         <tr><td class="cod">PR 17</td><td>Recusa de atendimento para remoção ao P.S</td></tr>
         <tr><td class="cod">PR 18</td><td>Remoção de vítima para P.S</td></tr>
         <tr><td class="cod">PR 19</td><td>Sinalização final de fila</td></tr>
         <tr><td class="cod">PR 20</td><td>Auxílio no combate a incêndio</td></tr>
         <tr><td class="cod">PR 21</td><td>Remoção de andarilho ao P.S</td></tr>
-        <tr><td class="cod">PR 22</td><td>Orientação / Informação ao usuário</td></tr>
+        <tr><td class="cod">PR 22</td><td>Orientação/Informação ao usuário</td></tr>
         <tr><td class="cod">PR 23</td><td>Remoção de carga derramada</td></tr>
         <tr><td class="cod">PR 24</td><td>Limpeza de pista</td></tr>
         <tr><td class="cod">PR 25</td><td>Troca de pneu</td></tr>
@@ -541,23 +567,23 @@
         <tr><td class="cod">PR 49</td><td>Atendimento Clínico</td></tr>
         <tr><td class="cod">PR 50</td><td>Desencarceramento de vítima</td></tr>
         <tr><td class="cod">PR 51</td><td>Paliativo no Pavimento</td></tr>
-        <tr><td class="cod">PR 52</td><td>Retirada de objeto na pista</td></tr>
+        <tr><td class="cod">PR 52</td><td>Registro Fotográfico</td></tr>
         <tr><td class="cod">PR 53</td><td>Regulação Médica</td></tr>
         <tr><td class="cod">PR 54</td><td>Acompanhamento de Obras</td></tr>
         <tr><td class="cod">PR 55</td><td>Evento Acompanhado Pelo CFTV</td></tr>
-        <tr><td class="cod">PR 56</td><td>Demora no Atendimento Devida à OC Relacionada</td></tr>
+        <tr><td class="cod">PR 56</td><td>Demora no Atendimento Devido a OC Relacionada</td></tr>
         <tr><td class="cod">PR 57</td><td>Atendimento Cancelado</td></tr>
-        <tr><td class="cod">PR 58</td><td>Embargo de obras devida à falta de programação</td></tr>
+        <tr><td class="cod">PR 58</td><td>Embargo de obras devido falta de programação</td></tr>
         <tr><td class="cod">PR 59</td><td>Recusa de atendimento - Acionado Recurso Próprio</td></tr>
         <tr><td class="cod">PR 60</td><td>Removido para o Posto Policial</td></tr>
       </tbody>
     </table>
   </div>
 </div>
-
+ 
 <!-- ======================== ALFABÉTICO ======================== -->
 <div id="alfabetico" class="section">
-  <div class="section-title">Código Alfabético</div>
+  <div class="section-title">Código Alfabético (NATO)</div>
   <div class="cards-grid" id="cards-alfa">
     <div class="card"><div class="letra">A</div><div class="nome-cod">ALFA</div><div class="pron-card">ALFA</div></div>
     <div class="card"><div class="letra">B</div><div class="nome-cod">BRAVO</div><div class="pron-card">BRAVO</div></div>
@@ -582,17 +608,17 @@
     <div class="card"><div class="letra">U</div><div class="nome-cod">UNIFORME</div><div class="pron-card">UNIFORMÊ</div></div>
     <div class="card"><div class="letra">V</div><div class="nome-cod">VICTOR</div><div class="pron-card">VIQUITOR</div></div>
     <div class="card"><div class="letra">W</div><div class="nome-cod">WHISKEY</div><div class="pron-card">UÍSQUE</div></div>
-    <div class="card"><div class="letra">X</div><div class="nome-cod">XRAY</div><div class="pron-card">ÉQUISREI</div></div>
+    <div class="card"><div class="letra">X</div><div class="nome-cod">XRAY</div><div class="pron-card">ÉQUISRREI</div></div>
     <div class="card"><div class="letra">Y</div><div class="nome-cod">YANKEE</div><div class="pron-card">IÂNQUI</div></div>
     <div class="card"><div class="letra">Z</div><div class="nome-cod">ZULU</div><div class="pron-card">ZULU</div></div>
   </div>
 </div>
-
+ 
 <!-- ======================== NUMÉRICO ======================== -->
 <div id="numerico" class="section">
   <div class="section-title">Código Numérico</div>
   <div class="num-grid">
-    <div class="num-card"><div class="num">0</div><div class="num-pron">ZERO ou NEGATIVO</div></div>
+    <div class="num-card"><div class="num">0</div><div class="num-pron">ZERO OU NEGATIVO</div></div>
     <div class="num-card"><div class="num">1</div><div class="num-pron">PRIMEIRO</div></div>
     <div class="num-card"><div class="num">2</div><div class="num-pron">SEGUNDO</div></div>
     <div class="num-card"><div class="num">3</div><div class="num-pron">TERCEIRO</div></div>
@@ -604,50 +630,50 @@
     <div class="num-card"><div class="num">9</div><div class="num-pron">NONO</div></div>
   </div>
 </div>
-
+ 
 <!-- ======================== CCO ======================== -->
 <div id="cco" class="section">
   <div class="section-title">Sequência de Informações para o CCO</div>
   <div class="cco-grid">
     <div class="cco-card">
       <div class="cco-card-header">🔧 Ocorrência — Atendimento Mecânico</div>
-      <div class="cco-row"><div class="cco-num">1</div><div class="cco-desc">Tipo de Ocorrência</div></div>
-      <div class="cco-row"><div class="cco-num">2</div><div class="cco-desc">KM</div></div>
-      <div class="cco-row"><div class="cco-num">3</div><div class="cco-desc">Metros</div></div>
-      <div class="cco-row"><div class="cco-num">4</div><div class="cco-desc">Sentido</div></div>
-      <div class="cco-row"><div class="cco-num">5</div><div class="cco-desc">Marca</div></div>
-      <div class="cco-row"><div class="cco-num">6</div><div class="cco-desc">Modelo</div></div>
-      <div class="cco-row"><div class="cco-num">7</div><div class="cco-desc">Placa</div></div>
-      <div class="cco-row"><div class="cco-num">8</div><div class="cco-desc">Nome</div></div>
-      <div class="cco-row"><div class="cco-num">9</div><div class="cco-desc">Telefone</div></div>
-      <div class="cco-row"><div class="cco-num">10</div><div class="cco-desc">Providências Tomadas</div></div>
+      <div class="cco-row"><div class="cco-num">1</div><div>Tipo de Ocorrência</div></div>
+      <div class="cco-row"><div class="cco-num">2</div><div>KM</div></div>
+      <div class="cco-row"><div class="cco-num">3</div><div>Metros</div></div>
+      <div class="cco-row"><div class="cco-num">4</div><div>Sentido</div></div>
+      <div class="cco-row"><div class="cco-num">5</div><div>Marca</div></div>
+      <div class="cco-row"><div class="cco-num">6</div><div>Modelo</div></div>
+      <div class="cco-row"><div class="cco-num">7</div><div>Placa</div></div>
+      <div class="cco-row"><div class="cco-num">8</div><div>Nome</div></div>
+      <div class="cco-row"><div class="cco-num">9</div><div>Telefone</div></div>
+      <div class="cco-row"><div class="cco-num">10</div><div>Providências Tomadas</div></div>
     </div>
     <div class="cco-card">
       <div class="cco-card-header">🚨 Ocorrência de Acidente</div>
-      <div class="cco-row"><div class="cco-num">1</div><div class="cco-desc">Tipo de Ocorrência</div></div>
-      <div class="cco-row"><div class="cco-num">2</div><div class="cco-desc">KM</div></div>
-      <div class="cco-row"><div class="cco-num">3</div><div class="cco-desc">Metros</div></div>
-      <div class="cco-row"><div class="cco-num">4</div><div class="cco-desc">Sentido</div></div>
-      <div class="cco-row"><div class="cco-num">5</div><div class="cco-desc">Marca</div></div>
-      <div class="cco-row"><div class="cco-num">6</div><div class="cco-desc">Modelo</div></div>
-      <div class="cco-row"><div class="cco-num">7</div><div class="cco-desc">Placa</div></div>
-      <div class="cco-row"><div class="cco-num">8</div><div class="cco-desc">Nome</div></div>
-      <div class="cco-row"><div class="cco-num">9</div><div class="cco-desc">Telefone</div></div>
-      <div class="cco-row"><div class="cco-num">10</div><div class="cco-desc">Providências Tomadas</div></div>
-      <div class="cco-row"><div class="cco-num">11</div><div class="cco-desc">Idade</div></div>
-      <div class="cco-row"><div class="cco-num">12</div><div class="cco-desc">Tempo de Habilitação</div></div>
-      <div class="cco-row"><div class="cco-num">13</div><div class="cco-desc">Grau de Escolaridade</div></div>
-      <div class="cco-row"><div class="cco-num">14</div><div class="cco-desc">Condições dos Pneus</div></div>
-      <div class="cco-row"><div class="cco-num">15</div><div class="cco-desc">Uso do Cinto</div></div>
-      <div class="cco-row"><div class="cco-num">16</div><div class="cco-desc">CPF</div></div>
-      <div class="cco-row"><div class="cco-num">17</div><div class="cco-desc">Tipo de Carga (se houver)</div></div>
-      <div class="cco-row"><div class="cco-num">18</div><div class="cco-desc">Toneladas / Quantidade</div></div>
-      <div class="cco-row"><div class="cco-num">19</div><div class="cco-desc">Derramamento de Carga</div></div>
-      <div class="cco-row"><div class="cco-num">20</div><div class="cco-desc">Danos ao Patrimônio</div></div>
+      <div class="cco-row"><div class="cco-num">1</div><div>Tipo de Ocorrência</div></div>
+      <div class="cco-row"><div class="cco-num">2</div><div>KM</div></div>
+      <div class="cco-row"><div class="cco-num">3</div><div>Metros</div></div>
+      <div class="cco-row"><div class="cco-num">4</div><div>Sentido</div></div>
+      <div class="cco-row"><div class="cco-num">5</div><div>Marca</div></div>
+      <div class="cco-row"><div class="cco-num">6</div><div>Modelo</div></div>
+      <div class="cco-row"><div class="cco-num">7</div><div>Placa</div></div>
+      <div class="cco-row"><div class="cco-num">8</div><div>Nome</div></div>
+      <div class="cco-row"><div class="cco-num">9</div><div>Telefone</div></div>
+      <div class="cco-row"><div class="cco-num">10</div><div>Providências Tomadas</div></div>
+      <div class="cco-row"><div class="cco-num">11</div><div>Idade</div></div>
+      <div class="cco-row"><div class="cco-num">12</div><div>Tempo de Habilitação</div></div>
+      <div class="cco-row"><div class="cco-num">13</div><div>Grau de Escolaridade</div></div>
+      <div class="cco-row"><div class="cco-num">14</div><div>Condições dos Pneus</div></div>
+      <div class="cco-row"><div class="cco-num">15</div><div>Uso do Cinto</div></div>
+      <div class="cco-row"><div class="cco-num">16</div><div>CPF</div></div>
+      <div class="cco-row"><div class="cco-num">17</div><div>Tipo de Carga (se houver)</div></div>
+      <div class="cco-row"><div class="cco-num">18</div><div>Toneladas / Quantidade</div></div>
+      <div class="cco-row"><div class="cco-num">19</div><div>Derramamento de Carga</div></div>
+      <div class="cco-row"><div class="cco-num">20</div><div>Danos ao Patrimônio</div></div>
     </div>
   </div>
 </div>
-
+ 
 <!-- ======================== ABASTECIMENTO ======================== -->
 <div id="abastecimento" class="section">
   <div class="section-title">Procedimento de Abastecimento</div>
@@ -659,35 +685,34 @@
     <div class="abas-item"><div class="abas-step">5</div><div class="abas-desc">Acompanhar abastecimento do início ao final</div></div>
   </div>
 </div>
-
+ 
 <script>
-  function showTab(id) {
+  function showTab(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    event.target.classList.add('active');
+    btn.classList.add('active');
     document.getElementById('searchInput').value = '';
     filterAll();
   }
-
+ 
   function filterAll() {
     const q = document.getElementById('searchInput').value.toLowerCase().trim();
-
-    // Tables
-    ['tbl-q','tbl-oc','tbl-pr'].forEach(id => {
+ 
+    const tableIds = ['tbl-q','tbl-oc-ac','tbl-oc-c','tbl-oc-i','tbl-oc-o','tbl-oc-p','tbl-oc-outros','tbl-pr'];
+    tableIds.forEach(id => {
       const tbl = document.getElementById(id);
       if (!tbl) return;
       tbl.querySelectorAll('tbody tr').forEach(row => {
-        row.classList.toggle('hidden', q && !row.textContent.toLowerCase().includes(q));
+        row.classList.toggle('hidden', q !== '' && !row.textContent.toLowerCase().includes(q));
       });
     });
-
-    // Alfa cards
+ 
     document.querySelectorAll('#cards-alfa .card').forEach(card => {
-      card.classList.toggle('hidden', q && !card.textContent.toLowerCase().includes(q));
+      card.classList.toggle('hidden', q !== '' && !card.textContent.toLowerCase().includes(q));
     });
   }
 </script>
-
+ 
 </body>
 </html>
